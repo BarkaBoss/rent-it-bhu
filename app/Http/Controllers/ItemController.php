@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -15,7 +16,7 @@ class ItemController extends Controller
                 ->with([
                         'alert-type' => 'success',
                         'alert-message' => 'New item created successfully!'
-                        ]
+                    ]
                 );
         } else {
             return redirect()->back()
@@ -23,7 +24,8 @@ class ItemController extends Controller
                 ->with([
                     'alert-type' => 'danger',
                     'alert-message' => 'An error occurred while creating a new item!',
-                ]);
+                ],
+            );
         }
     }
 }
