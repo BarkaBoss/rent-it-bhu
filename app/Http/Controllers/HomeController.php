@@ -16,4 +16,29 @@ class HomeController extends Controller
         $items = Item::all();
         return view('home', compact('profile', 'carousel', 'items'));
     }
+
+    public function viewProfileForm()
+    {
+        $profile= Profile::first();
+        return view('admin.profile-form', compact('profile'));
+    }
+
+    public function postProfileForm(Request $request, Profile $profile)
+    {
+        $companyProfile = $profile->updateProfile($request);
+
+        if ($companyProfile) {
+            return redirect()->back()
+                ->with([
+                    'alert-type' => 'success',
+                    'alert-message' => 'Profile updated successfully!'
+                ]);
+        } else {
+            return redirect()->back()
+                ->with([
+                    'alert-type' => 'error',
+                    'alert-message' => 'Failed to update profile!'
+                ]);
+        }
+    }
 }

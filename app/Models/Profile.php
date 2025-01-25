@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,13 +42,16 @@ class Profile extends Model
             'twitter_url' => $data['twitter_url'],
             'tiktok_url' => $data['tiktok_url'],
             'youtube_url' => $data['youtube_url'],
-            'about' => $data['about']
+            'about' => $data['about'],
+            'created_at'=> Carbon::now(),
+            'updated_at'=> Carbon::now()
         ];
 
         if(request()->hasFile('logo') && request()->file('logo')->isValid()) {
             $file = request()->file('logo');
             $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-            $file->storeAs('public/profile', $imageName);
+            //$file->storeAs('public', $imageName, 'profile');
+            $file->store('/profile',['disk' => 'my_files']);
             $profile['logo'] = $imageName;
         }else{
             $profile['logo'] = '';

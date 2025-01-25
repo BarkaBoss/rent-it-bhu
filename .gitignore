@@ -4,6 +4,8 @@
 /public/hot
 /public/storage
 /public/img
+/public/profile
+/public/carousel
 /storage/*.key
 /storage/pail
 /vendor
