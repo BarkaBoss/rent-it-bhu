@@ -41,4 +41,29 @@ class HomeController extends Controller
                 ]);
         }
     }
+
+    public function viewCarouselForm()
+    {
+        $profile= Carousel::first();
+        return view('admin.carousel-form', compact('profile'));
+    }
+
+    public function postCarouselForm(Request $request, Carousel $carousel)
+    {
+        $newCarousel = $carousel->createCarousel($request);
+
+        if ($newCarousel) {
+            return redirect()->back()
+                ->with([
+                    'alert-type' => 'success',
+                    'alert-message' => 'Carousel created successfully!'
+                ]);
+        } else {
+            return redirect()->back()
+                ->with([
+                    'alert-type' => 'error',
+                    'alert-message' => 'Failed to create carousel!'
+                ]);
+        }
+    }
 }

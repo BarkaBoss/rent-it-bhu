@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.addItem') }}" class="nav-link">
+                    <a href="{{ route('admin.addCarousel') }}" class="nav-link">
                         <i class="nav-icon bi bi-circle"></i>
                         <p>Add Carousel</p>
                     </a>
