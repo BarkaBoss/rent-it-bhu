@@ -20,22 +20,22 @@
                 <form method="post" action="{{ route('admin.storeCarousel') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
-                        <div class="form-group @error('title') has-error @enderror">
-                            <label for="title">Title</label>
+                        <div class="mb-3 form-group @error('title') has-error @enderror">
+                            <label class="form-label" for="title">Title</label>
                             <input id="title" name="title" value="{{$profile->title ?? ''}}" class="form-control">
                             @error('title')
                             <span class="help-block">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group @error('description') has-error @enderror">
-                            <label for="description">Description</label>
+                        <div class="mb-3 form-group @error('description') has-error @enderror">
+                            <label class="form-label" for="description">Description</label>
                             <textarea id="description" name="description" class="form-control"> {{$profile->description ?? ''}} </textarea>
                             @error('description')
                             <span class="help-block">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group @error('image') has-error @enderror">
-                            <label for="image">Image 1000 x 430</label>
+                        <div class="mb-3 form-group @error('image') has-error @enderror">
+                            <label class="form-label" for="image">Image 1000 x 430</label>
                             <input id="image" name="image" type="file" class="form-control">
                             @error('image')
                             <span class="help-block">{{ $message }}</span>

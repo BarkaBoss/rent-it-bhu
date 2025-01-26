@@ -44,7 +44,7 @@ class HomeController extends Controller
 
     public function viewCarouselForm()
     {
-        $profile= Carousel::first();
+        $profile= Profile::first();
         return view('admin.carousel-form', compact('profile'));
     }
 

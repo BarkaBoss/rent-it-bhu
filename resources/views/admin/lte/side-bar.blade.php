@@ -6,8 +6,8 @@
         <a href="#" class="brand-link">
             <!--begin::Brand Image-->
             <img
-                src="../../dist/assets/img/AdminLTELogo.png"
-                alt="AdminLTE Logo"
+                src="{{ asset('profile/'.$profile->logo) }}"
+                alt="Rent It"
                 class="brand-image opacity-75 shadow"
             />
             <!--end::Brand Image-->
@@ -35,13 +35,13 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.addItem') }}" class="nav-link">
-                        <i class="nav-icon bi bi-circle"></i>
+                        <i class="nav-icon bi bi-box"></i>
                         <p>Add Item</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.addCarousel') }}" class="nav-link">
-                        <i class="nav-icon bi bi-circle"></i>
+                        <i class="nav-icon bi bi-image"></i>
                         <p>Add Carousel</p>
                     </a>
                 </li>
