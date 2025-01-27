@@ -6,6 +6,7 @@
 /public/img
 /public/profile
 /public/carousel
+/public/products
 /storage/*.key
 /storage/pail
 /vendor
