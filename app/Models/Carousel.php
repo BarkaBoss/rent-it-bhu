@@ -31,7 +31,7 @@ class Carousel extends Model
         if(request()->hasFile('image') && request()->file('image')->isValid()) {
             $file = request()->file('image');
             $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-            $file->storeAs('public/carousel', $imageName);
+            $file->storeAs('carousel', $imageName, 'my_files');
             $carousel['image'] = $imageName;
         }else{
             $carousel['image'] = '';

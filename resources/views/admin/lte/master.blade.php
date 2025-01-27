@@ -217,22 +217,22 @@
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <img
-                            src="../../dist/assets/img/user2-160x160.jpg"
+                            src="{{ asset('profile/'.$profile->logo) }}"
                             class="user-image rounded-circle shadow"
                             alt="User Image"
                         />
-                        <span class="d-none d-md-inline">Alexander Pierce</span>
+                        <span class="d-none d-md-inline">{{ $profile->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                         <!--begin::User Image-->
                         <li class="user-header text-bg-primary">
                             <img
-                                src="../../dist/assets/img/user2-160x160.jpg"
+                                src="{{ asset('profile/'.$profile->logo) }}"
                                 class="rounded-circle shadow"
                                 alt="User Image"
                             />
                             <p>
-                                Alexander Pierce - Web Developer
+                                {{ $profile->name }}
                                 <small>Member since Nov. 2023</small>
                             </p>
                         </li>
@@ -288,7 +288,7 @@
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-            Copyright &copy; 2025&nbsp;
+            Copyright &copy; <span id="year"></span>&nbsp;by
             <a href="https://nokt.com.ng" class="text-decoration-none">Nokt</a>.
         </strong>
         All rights reserved.
@@ -304,6 +304,9 @@
     integrity="sha256-dghWARbRe2eLlIJ56wNB+b760ywulqK3DzZYEpsg2fQ="
     crossorigin="anonymous"
 ></script>
+<script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
 <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
 <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

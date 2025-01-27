@@ -8,9 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
+
+    protected  $fillable = [
+        'name',
+        'description',
+        'price',
+        'quantity',
+        'availability',
+    ];
+
     public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Images::class);
     }
 
     public function getItems(){
@@ -24,17 +33,20 @@ class Item extends Model
             'description' => $data['description'],
             'price' => $data['price'],
             'quantity' => $data['quantity'],
-            'availability' => $data['availability'],
+            'availability' => true,
         ];
 
-        $item->save();
+        #$item->save();
+        $thisItem = $this->create($item);
 
         foreach ($data['images'] as $imageFile) {
-            $image = new Image();
-            $path = $imageFile->store('images', 'public');
+            $image = new Images();
+            $imageName = md5($imageFile->getClientOriginalName() . time()) . "." . $imageFile->getClientOriginalExtension();
+            $path = $imageFile->storeAs('products', $imageName, 'my_files');
             $image->url = $path;
-            $image->item_id = $item->id;
-            $image->save();
+            $image->item_id = $thisItem->id;
+            $thisItem->images()->save($image);
         }
+        return $thisItem;
     }
 }

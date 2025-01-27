@@ -29,12 +29,12 @@
                 data-accordion="false"
             >
                 <li class="nav-item">
-                    <a href="{{ route('admin.addItem') }}" class="nav-link">
+                    <a href="{{ route('admin.viewProfile') }}" class="nav-link">
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.addItem') }}" class="nav-link">
+                    <a href="{{ route('admin.viewItem') }}" class="nav-link">
                         <i class="nav-icon bi bi-box"></i>
                         <p>Add Item</p>
                     </a>
