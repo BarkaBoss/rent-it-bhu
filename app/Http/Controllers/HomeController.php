@@ -49,6 +49,29 @@ class HomeController extends Controller
         return view('admin.carousel-form', compact('profile', 'carousels'));
     }
 
+    public function editCarousel()
+    {
+        return view('admin.edit-carousel-form');
+    }
+
+    public function postEditCarousel($carousel_id, Carousel $carousel)
+    {
+        $updateCarousel = $carousel->updateCarousel($carousel_id);
+        if ($updateCarousel) {
+            return redirect()->back()
+                ->with([
+                    'alert-type' => 'success',
+                    'alert-message' => 'Carousel updated successfully!'
+                ]);
+        } else{
+            return redirect()->back()
+                ->with([
+                    'alert-type' => 'error',
+                    'alert-message' => 'Failed to update carousel!'
+                ]);
+        }
+    }
+
     public function postCarouselForm(Request $request, Carousel $carousel)
     {
         $newCarousel = $carousel->createCarousel($request);

@@ -39,4 +39,29 @@ class Carousel extends Model
 
         return $this->create($carousel);
     }
+
+    public function editCarousel($carousel_id)
+    {
+        $carouselId = decrypt($carousel_id);
+        return $this->where('id', $carouselId)->first();
+    }
+
+    public function updateCarousel($data)
+    {
+        $carouselId = decrypt($data['carousel_id']);
+        $updateCarousel = [
+            'title' => $data['title'],
+            'description' => $data['description'],
+        ];
+        if(request()->hasFile('image') && request()->file('image')->isValid()) {
+            $file = request()->file('image');
+            $imageName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+            $file->storeAs('carousel', $imageName, 'my_files');
+            $updateCarousel['image'] = $imageName;
+        }else{
+            $updateCarousel['image'] = '';
+        }
+
+        return $this->where('id', $carouselId)->update($updateCarousel);
+    }
 }
